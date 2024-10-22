@@ -9,39 +9,98 @@ import CardContent from '@mui/material/CardContent';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
+import { Button } from '@mui/material';
 
+const data = {
+  advancement: [
+    { label: 'Correct Predictions', value: 17 },
+    { label: 'Wrong Predictions', value: 4 },
+  ],
+  multinomial: [
+    { label: 'Correct Predictions', value: 15 },
+    { label: 'Wrong Predictions', value: 6 },
+  ],
+  complement: [
+    { label: 'Correct Predictions', value: 12 },
+    { label: 'Wrong Predictions', value: 9 },
+  ],
+  bernoulli: [
+    { label: 'Correct Predictions', value: 10 },
+    { label: 'Wrong Predictions', value: 11 },
+  ],
+  gaussian: [
+    { label: 'Correct Predictions', value: 9 },
+    { label: 'Wrong Predictions', value: 12 },
+  ],
+};
 
+const countriesData = {
+  advancement: [
+    {
+      name: 'Correct Predictions',
+      value: 80.9,
+      color: '#91EF9F',
+    },
+    {
+      name: 'Wrong Predictions',
+      value: 19.1,
+      color: '#EF919F',
+    },
+  ],
+  multinomial: [
+    {
+      name: 'Correct Predictions',
+      value: 71.4,
+      color: '#91EF9F',
+    },
+    {
+      name: 'Wrong Predictions',
+      value: 28.6,
+      color: '#EF919F',
+    },
+  ],
+  complement: [
+    {
+      name: 'Correct Predictions',
+      value: 57.1,
+      color: '#91EF9F',
+    },
+    {
+      name: 'Wrong Predictions',
+      value: 42.9,
+      color: '#EF919F',
+    },
+  ],
+  bernoulli: [
+    {
+      name: 'Correct Predictions',
+      value: 47.6,
+      color: '#91EF9F',
+    },
+    {
+      name: 'Wrong Predictions',
+      value: 52.4,
+      color: '#EF919F',
+    },
+  ],
+  gaussian: [
+    {
+      name: 'Correct Predictions',
+      value: 42.8,
+      color: '#91EF9F',
+    },
+    {
+      name: 'Wrong Predictions',
+      value: 57.2,
+      color: '#EF919F',
+    },
+  ],
+};
 
-const data = [
-  { label: 'Correct Predictions', value: 17 },
-  { label: 'Wrong Predictions', value: 4 },
-  // { label: 'Brazil', value: 10000 },
-  // { label: 'Other', value: 5000 },
-];
-
-const countries = [
-  {
-    name: 'Correct Predictions',
-    value: 80.9,
-    color: '#91EF9F',
-  },
-  {
-    name: 'Wrong Predictions',
-    value: 19.1,
-    color: '#EF919F',
-  },
-  // {
-  //   name: 'Brazil',
-  //   value: 10,
-  //   flag: <BrazilFlag />,
-  //   color: 'hsl(220, 25%, 30%)',
-  // },
-  // {
-  //   name: 'Other',
-  //   value: 5,
-  //   flag: <GlobeFlag />,
-  //   color: 'hsl(220, 25%, 20%)',
-  // },
+// Define your colors here
+const colors = [
+  '#91EF9F',
+  '#EF919F',
 ];
 
 const StyledText = styled('text', {
@@ -104,13 +163,13 @@ PieCenterLabel.propTypes = {
   secondaryText: PropTypes.string.isRequired,
 };
 
-const colors = [
-  '#91EF9F',
-  '#EF919F',
-  
-];
-
 export default function ChartUserByCountry() {
+  const [graph, setGraph] = React.useState('advancement');
+
+  // Retrieve the relevant data and countries based on the selected graph
+  const chartData = data[graph];
+  const countries = countriesData[graph];
+
   return (
     <Card
       variant="outlined"
@@ -118,8 +177,58 @@ export default function ChartUserByCountry() {
     >
       <CardContent>
         <Typography component="h2" variant="subtitle2">
-          Advancement Algorithm Predictions
+          {graph.charAt(0).toUpperCase() + graph.slice(1)} Algorithm Predictions
         </Typography>
+        <Button
+          variant="contained"
+          size="small"
+          color="primary"
+          sx={{ margin: 2, padding: '8px 16px' }}
+          onClick={() => setGraph('advancement')}
+        >
+          Advancement 
+        </Button>
+
+        <Button
+          variant="contained"
+          size="small"
+          color="primary"
+          sx={{ margin: 2, padding: '8px 16px' }}
+          onClick={() => setGraph('multinomial')}
+        >
+          Multinomial
+        </Button>
+
+        <Button
+          variant="contained"
+          size="small"
+          color="primary"
+          sx={{ margin: 2, padding: '8px 16px' }}
+          onClick={() => setGraph('complement')}
+        >
+          Complement
+        </Button>
+
+        <Button
+          variant="contained"
+          size="small"
+          color="primary"
+          sx={{ margin: 2, padding: '8px 16px' }}
+          onClick={() => setGraph('bernoulli')}
+        >
+          Bernoulli
+        </Button>
+
+        <Button
+          variant="contained"
+          size="small"
+          color="primary"
+          sx={{ margin: 2, padding: '8px 16px' }}
+          onClick={() => setGraph('gaussian')}
+        >
+          Gaussian
+        </Button>
+
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <PieChart
             colors={colors}
@@ -131,7 +240,7 @@ export default function ChartUserByCountry() {
             }}
             series={[
               {
-                data,
+                data: chartData, // Use the chart data based on the state
                 innerRadius: 75,
                 outerRadius: 100,
                 paddingAngle: 0,
@@ -144,16 +253,16 @@ export default function ChartUserByCountry() {
               legend: { hidden: true },
             }}
           >
-            <PieCenterLabel primaryText="21" secondaryText="Total" />
+            <PieCenterLabel primaryText={chartData.reduce((acc, cur) => acc + cur.value, 0)} secondaryText="Total" />
           </PieChart>
         </Box>
+
         {countries.map((country, index) => (
           <Stack
             key={index}
             direction="row"
             sx={{ alignItems: 'center', gap: 2, pb: 2 }}
           >
-            {country.flag}
             <Stack sx={{ gap: 1, flexGrow: 1 }}>
               <Stack
                 direction="row"
