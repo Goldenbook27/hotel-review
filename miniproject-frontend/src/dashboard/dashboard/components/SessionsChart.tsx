@@ -24,7 +24,7 @@ function getDaysInMonth(month: number, year: number) {
     month: 'short',
   });
   const daysInMonth = date.getDate();
-  const days = [];
+  const days:any = [];
   let i = 1;
   while (days.length < daysInMonth) {
     days.push(`${monthName} ${i}`);

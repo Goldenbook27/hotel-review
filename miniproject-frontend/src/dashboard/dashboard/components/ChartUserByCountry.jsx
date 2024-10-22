@@ -10,45 +10,38 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 
-import {
-  IndiaFlag,
-  UsaFlag,
-  BrazilFlag,
-  GlobeFlag,
-} from '../internals/components/CustomIcons';
+
 
 const data = [
-  { label: 'India', value: 50000 },
-  { label: 'USA', value: 35000 },
-  { label: 'Brazil', value: 10000 },
-  { label: 'Other', value: 5000 },
+  { label: 'Correct Predictions', value: 17 },
+  { label: 'Wrong Predictions', value: 4 },
+  // { label: 'Brazil', value: 10000 },
+  // { label: 'Other', value: 5000 },
 ];
 
 const countries = [
   {
-    name: 'India',
-    value: 50,
-    flag: <IndiaFlag />,
-    color: 'hsl(220, 25%, 65%)',
+    name: 'Correct Predictions',
+    value: 80.9,
+    color: '#91EF9F',
   },
   {
-    name: 'USA',
-    value: 35,
-    flag: <UsaFlag />,
-    color: 'hsl(220, 25%, 45%)',
+    name: 'Wrong Predictions',
+    value: 19.1,
+    color: '#EF919F',
   },
-  {
-    name: 'Brazil',
-    value: 10,
-    flag: <BrazilFlag />,
-    color: 'hsl(220, 25%, 30%)',
-  },
-  {
-    name: 'Other',
-    value: 5,
-    flag: <GlobeFlag />,
-    color: 'hsl(220, 25%, 20%)',
-  },
+  // {
+  //   name: 'Brazil',
+  //   value: 10,
+  //   flag: <BrazilFlag />,
+  //   color: 'hsl(220, 25%, 30%)',
+  // },
+  // {
+  //   name: 'Other',
+  //   value: 5,
+  //   flag: <GlobeFlag />,
+  //   color: 'hsl(220, 25%, 20%)',
+  // },
 ];
 
 const StyledText = styled('text', {
@@ -112,10 +105,9 @@ PieCenterLabel.propTypes = {
 };
 
 const colors = [
-  'hsl(220, 20%, 65%)',
-  'hsl(220, 20%, 42%)',
-  'hsl(220, 20%, 35%)',
-  'hsl(220, 20%, 25%)',
+  '#91EF9F',
+  '#EF919F',
+  
 ];
 
 export default function ChartUserByCountry() {
@@ -126,7 +118,7 @@ export default function ChartUserByCountry() {
     >
       <CardContent>
         <Typography component="h2" variant="subtitle2">
-          Users by country
+          Advancement Algorithm Predictions
         </Typography>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <PieChart
@@ -152,7 +144,7 @@ export default function ChartUserByCountry() {
               legend: { hidden: true },
             }}
           >
-            <PieCenterLabel primaryText="98.5K" secondaryText="Total" />
+            <PieCenterLabel primaryText="21" secondaryText="Total" />
           </PieChart>
         </Box>
         {countries.map((country, index) => (
