@@ -2,7 +2,7 @@
 
 This project analyzes hotel reviews using machine learning techniques to determine their sentiment (positive, negative, or neutral). It features a backend built with Flask and a frontend built with React.
 
-![Project Screenshot](https://github.com/Goldenbook27/hotel-review/blob/main/pics/frontend4.png?raw=true)
+![Project Screenshot](https://github.com/Goldenbook27/hotel-review/blob/main/pics/frontend1.png?raw=true)
 ![Project Screenshot](./pics/frontend2.png)
 ![Project Screenshot](./pics/frontend3.png)
 ![Project Screenshot](./pics/frontend4.png)
