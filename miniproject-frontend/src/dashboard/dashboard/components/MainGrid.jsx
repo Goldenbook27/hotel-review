@@ -1,33 +1,37 @@
-import * as React from 'react';
-import Grid from '@mui/material/Grid2';
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
-import Copyright from '../internals/components/Copyright';
-import ChartUserByCountry from './ChartUserByCountry';
-import CustomizedTreeView from './CustomizedTreeView';
-import CustomizedDataGrid from './CustomizedDataGrid';
-import HighlightedCard from './HighlightedCard';
-import MenuButton from './MenuButton';
-import PageViewsBarChart from './PageViewsBarChart';
-import SessionsChart from './SessionsChart';
-import StatCard from './StatCard';
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from '@mui/material';
-import gaussianimage from "../../../assets/gaussian.jpg"
-import complementimage from "../../../assets/complement.jpg"
-import multinomialimage from "../../../assets/multinomial.jpg"
-import bernoulliimage from "../../../assets/bernoulli.jpg"
-import advancedimage from "../../../assets/advanced.jpg"
-import Input from './Input';
+import * as React from "react";
+import Grid from "@mui/material/Grid2";
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import Copyright from "../internals/components/Copyright";
+import ChartUserByCountry from "./ChartUserByCountry";
+import CustomizedTreeView from "./CustomizedTreeView";
+import CustomizedDataGrid from "./CustomizedDataGrid";
+import HighlightedCard from "./HighlightedCard";
+import MenuButton from "./MenuButton";
+import PageViewsBarChart from "./PageViewsBarChart";
+import SessionsChart from "./SessionsChart";
+import StatCard from "./StatCard";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Button,
+} from "@mui/material";
+import gaussianimage from "../../../assets/gaussian.jpg";
+import complementimage from "../../../assets/complement.jpg";
+import multinomialimage from "../../../assets/multinomial.jpg";
+import bernoulliimage from "../../../assets/bernoulli.jpg";
+import advancedimage from "../../../assets/advanced.jpg";
+import Input from "./Input";
 import Card from "@mui/material/Card";
-
-
 
 const data = [
   {
-    title: 'Gaussian Naive Bayes',
-   accuracy : '0.7236',
-   description: `
+    title: "Gaussian Naive Bayes",
+    accuracy: "0.7236",
+    description: `
 Gaussian Naive Bayes is a probabilistic classifier based on Bayes' Theorem, which is particularly useful for classification tasks involving continuous data that follows a Gaussian (normal) distribution.
 
 Key Concepts
@@ -47,14 +51,12 @@ It also computes the average and variance for each feature within each class, he
 When a new instance (data point) is presented, the model evaluates the probabilities of that instance belonging to each class based on the learned characteristics.
 It then classifies the instance into the class with the highest probability.
 `,
-    image: gaussianimage
-   
-
+    image: gaussianimage,
   },
   {
-    title: 'Complement Naive Bayes',
-   accuracy : '0.8811',
-   description: `Complement Naive Bayes is a variant of Naive Bayes designed to improve classification performance on imbalanced datasets. It modifies the training process to account for the distribution of the complement class.
+    title: "Complement Naive Bayes",
+    accuracy: "0.8811",
+    description: `Complement Naive Bayes is a variant of Naive Bayes designed to improve classification performance on imbalanced datasets. It modifies the training process to account for the distribution of the complement class.
 
    Key Concepts
    Bayes' Theorem: Utilizes Bayes' Theorem to update the probability of a class based on new evidence.
@@ -73,13 +75,12 @@ It learns how features are distributed, considering both classes to improve pred
 For a new instance, the model evaluates probabilities based on both the class and its complement.
 It classifies the instance into the class with the highest adjusted probability, improving performance in imbalanced scenarios.
 `,
-   image : complementimage
-
+    image: complementimage,
   },
   {
-    title: 'Bernoulli Naive Bayes',
-    accuracy: '0.6810',
-    description : `Bernoulli Naive Bayes is a probabilistic classifier based on Bayes' Theorem that is particularly effective for binary/boolean features, such as the presence or absence of a word in a document.
+    title: "Bernoulli Naive Bayes",
+    accuracy: "0.6810",
+    description: `Bernoulli Naive Bayes is a probabilistic classifier based on Bayes' Theorem that is particularly effective for binary/boolean features, such as the presence or absence of a word in a document.
 
 Key Concepts
 Bayes' Theorem: Helps update the probability of a class based on new evidence, allowing for informed predictions.
@@ -98,12 +99,12 @@ It learns the probabilities of features being present or absent for each class.
 When a new instance is presented, the model computes the probabilities of that instance belonging to each class based on the learned feature probabilities.
 It classifies the instance into the class with the highest probability.
 `,
-    image : bernoulliimage
+    image: bernoulliimage,
   },
   {
-    title: 'Multinomial Naive Bayes',
-    accuracy : '0.8894',
-   description :`Multinomial Naive Bayes is a probabilistic classifier based on Bayes' Theorem that is particularly suited for discrete features, especially in text classification tasks involving word counts or frequencies.
+    title: "Multinomial Naive Bayes",
+    accuracy: "0.8894",
+    description: `Multinomial Naive Bayes is a probabilistic classifier based on Bayes' Theorem that is particularly suited for discrete features, especially in text classification tasks involving word counts or frequencies.
 
    Key Concepts
 Bayes' Theorem: Updates the probability of a class based on new evidence, helping make informed predictions.
@@ -121,12 +122,12 @@ It computes the probabilities of features given each class based on these freque
 #Prediction Phase:
 When a new instance is presented, the model evaluates the probabilities of that instance belonging to each class based on the learned frequency distributions.
 It classifies the instance into the class with the highest probability.`,
-   image : multinomialimage
+    image: multinomialimage,
   },
   {
-    title: 'Advanced Multinomial Naive Bayes',
-   accuracy : '0.9217',
-description: `Synonym Replacement Improves model generalization by substituting words with synonyms, expanding vocabulary while preserving context.
+    title: "Advanced Multinomial Naive Bayes",
+    accuracy: "0.9217",
+    description: `Synonym Replacement Improves model generalization by substituting words with synonyms, expanding vocabulary while preserving context.
 
 Text Cleaning (lowercase, remove URLs, emails) Standardizes input by converting to lowercase and removing noise like URLs and emails, improving feature quality.
 
@@ -151,18 +152,17 @@ Hyperparameter Tuning on Multinomial Naive Bayes Optimizes model performance by 
 Hyperparameter Tuning on Complement Naive Bayes Similar to Multinomial NB tuning, but focuses on a variant that often performs better on imbalanced datasets.
 
 Voting Classifier Combines predictions from multiple models (Multinomial and Complement NB) to potentially improve overall accuracy and robustness.`,
-image : advancedimage
-  }
+    image: advancedimage,
+  },
 ];
 
 export default function MainGrid() {
   const [main, setMain] = React.useState("overview");
- 
+
   return (
     <>
       <Header setMain={setMain} />
       {main === "overview" ? <Overview /> : <Playground />}
-      
     </>
   );
 }
@@ -170,24 +170,24 @@ export default function MainGrid() {
 function PopupView({ popup, open, handleClose }) {
   return (
     <Dialog open={open} onClose={handleClose}>
-  <DialogTitle>{popup?.title || 'No Title Available'}</DialogTitle>
-  <DialogContent dividers>
-    <img src={popup?.image || ''} alt="Model Image"/>
-    <Typography component="div" variant="body1">
-      {popup?.description
-        ? popup.description.split('\n').map((line, index) => (
-            <React.Fragment key={index}>
-              {line}
-              <br />
-            </React.Fragment>
-          ))
-        : 'No Description Available'}
-    </Typography>
-  </DialogContent>
-  <DialogActions>
-    <Button onClick={handleClose}>Close</Button>
-  </DialogActions>
-</Dialog>
+      <DialogTitle>{popup?.title || "No Title Available"}</DialogTitle>
+      <DialogContent dividers>
+        <img src={popup?.image || ""} alt="Model Image" />
+        <Typography component="div" variant="body1">
+          {popup?.description
+            ? popup.description.split("\n").map((line, index) => (
+                <React.Fragment key={index}>
+                  {line}
+                  <br />
+                </React.Fragment>
+              ))
+            : "No Description Available"}
+        </Typography>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose}>Close</Button>
+      </DialogActions>
+    </Dialog>
   );
 }
 
@@ -227,64 +227,69 @@ function Header({ setMain }) {
 }
 
 function Overview() {
-  const [popup,setPopup] = React.useState('')
+  const [popup, setPopup] = React.useState("");
 
   const [open, setOpen] = React.useState(false);
-  
+
   const handleClickOpen = (card) => {
     setPopup(card); // set the entire card object, not just the title
     setOpen(true);
   };
-  
 
   const handleClose = () => {
     setOpen(false);
   };
   return (
     <>
-    <Box sx={{ width: '100%', maxWidth: { sm: '100%', md: '1700px' } }}>
-      {/* cards */}
-      <Typography component="h2" variant="h6" sx={{ mb: 2 }}>
-        Overview
-      </Typography>
-      <Grid
-        container
-        spacing={2}
-        columns={12}
-        sx={{ mb: (theme) => theme.spacing(2) }}
-      >
-        {data.map((card, index) => (
-          <Grid key={index} size={{ xs: 12, sm: 6, lg: 3 }}>
-            <StatCard {...card} setOpen={setOpen} setPopup={setPopup}/>
+      <Box sx={{ width: "100%", maxWidth: { sm: "100%", md: "1700px" } }}>
+        <Typography component="h2" variant="h6" sx={{ mb: 2 }}>
+          Overview
+        </Typography>
+        <Grid
+          container
+          spacing={2}
+          columns={12}
+          sx={{ mb: (theme) => theme.spacing(2) }}
+        >
+          {data.map((card, index) => (
+            <Grid key={index} size={{ xs: 12, sm: 6, lg: 4 }}>
+              <StatCard {...card} setOpen={setOpen} setPopup={setPopup} />
+            </Grid>
+          ))}
+          <PopupView popup={popup} open={open} handleClose={handleClose} />
+        </Grid>
+        <Grid
+          container
+          spacing={2}
+          columns={2}
+          sx={{ mb: (theme) => theme.spacing(2) }}
+        >
+          <Grid size={{ xs: 2, lg: 1 }}>
+            <SessionsChart />
           </Grid>
-        ))}
-       <PopupView popup={popup} open={open} handleClose={handleClose} />
-        {/* <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
-          <HighlightedCard />
-        </Grid> */}
-        <Grid size={{ xs: 12, md: 6 ,lg:6}}>
-          <SessionsChart />
+          <Grid size={{ xs: 2, lg: 1 }}>
+            <PageViewsBarChart />
+          </Grid>
         </Grid>
-        <Grid size={{ xs: 12, md: 6 }}>
-          <PageViewsBarChart />
+        <Typography component="h2" variant="h6" sx={{ mb: 2 }}>
+          Details
+        </Typography>
+        <Grid container spacing={2} columns={12}>
+          <Grid size={{ xs: 12, lg: 9 }}>
+            <CustomizedDataGrid />
+          </Grid>
+          <Grid size={{ xs: 12, lg: 3 }}>
+            <Stack
+              gap={2}
+              direction={{ xs: "column", sm: "row", lg: "column" }}
+            >
+              {/* <CustomizedTreeView /> */}
+              <ChartUserByCountry />
+            </Stack>
+          </Grid>
         </Grid>
-      </Grid>
-      <Typography component="h2" variant="h6" sx={{ mb: 2 }}>
-        Details
-      </Typography>
-      <Grid container spacing={2} columns={12}>
-        <Grid size={{ xs: 12, lg: 9 }}>
-          <CustomizedDataGrid />
-        </Grid>
-        <Grid size={{ xs: 12, lg: 3 }}>
-          <Stack gap={2} direction={{ xs: 'column', sm: 'row', lg: 'column' }}>
-            <CustomizedTreeView />
-            <ChartUserByCountry />
-          </Stack>
-        </Grid>
-      </Grid>
-      <Copyright sx={{ my: 4 }} />
-    </Box>
+        <Copyright sx={{ my: 4 }} />
+      </Box>
     </>
   );
 }
